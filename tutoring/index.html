@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="https://raw.githubusercontent.com/jaking-studios/EpicWorlds50/main/Assets/branding/jaking_company_logo.svg">
+<title>JaKing Math Tutoring</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: graph-paper page; a course ladder from Algebra to Calc BC is the spine, then plans, then proof. */
+:root{
+  --paper:#f7f9fc; --grid:rgba(37,73,160,.07); --card:#ffffff; --ink:#14203a; --muted:#56627a; --line:#d9e1ee;
+  --blue:#2549a0; --red:#d6432b; --green:#1f8a5b;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e1422; --grid:rgba(120,160,255,.07); --card:#151d30; --ink:#e8eefb; --muted:#9eabc6; --line:#26324c;
+  --blue:#7ea2ff; --red:#ff7a62; --green:#4fd39a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1422; --grid:rgba(120,160,255,.07); --card:#151d30; --ink:#e8eefb; --muted:#9eabc6; --line:#26324c;
+  --blue:#7ea2ff; --red:#ff7a62; --green:#4fd39a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:var(--blue)}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+
+header .wrap{padding-block:52px 34px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:34px;align-items:center}
+header h1{font-size:clamp(34px,5.6vw,60px);font-weight:800;margin:10px 0 14px}
+header h1 u{text-decoration:none;background:linear-gradient(transparent 62%,color-mix(in srgb,var(--red) 30%,transparent) 62%)}
+header p{margin:0 0 20px;color:var(--muted);max-width:52ch}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none;border:2px solid transparent;font-family:var(--body);font-size:16px}
+.btn.primary{background:var(--blue);color:var(--paper)}
+.btn.outline{border-color:var(--ink);color:var(--ink)}
+.btn[aria-disabled="true"]{opacity:.65}
+.btn:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.board{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:22px;box-shadow:6px 6px 0 var(--ink);font-family:var(--mono);font-size:15px;display:grid;gap:12px}
+.board .q{color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.board .eq{font-size:19px;color:var(--ink)}
+.board .step{color:var(--muted)}
+.board .ans{color:var(--green);font-weight:500}
+@media (max-width:780px){header .wrap{grid-template-columns:1fr}}
+
+section{padding-block:44px 6px}
+.head{display:grid;gap:6px;margin-bottom:20px}
+.head h2{font-size:clamp(24px,3.3vw,34px)}
+.head p{margin:0;color:var(--muted);max-width:62ch}
+
+/* course ladder */
+.ladder{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;counter-reset:rung}
+.rung{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 14px;display:grid;gap:6px;align-content:start;position:relative}
+.rung b{font-family:var(--display);font-size:18px}
+.rung small{color:var(--muted);font-size:14px;line-height:1.45}
+.rung .lvl{font-family:var(--mono);font-size:12px;color:var(--blue)}
+.rung.top{border:2px solid var(--blue)}
+@media (max-width:860px){.ladder{grid-template-columns:repeat(2,minmax(0,1fr))}.rung.top{grid-column:1/-1}}
+@media (max-width:440px){.ladder{grid-template-columns:1fr}}
+
+.bc{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.bc span{font-family:var(--mono);font-size:13px;border:1px dashed var(--blue);color:var(--blue);padding:5px 10px;border-radius:8px;background:var(--card)}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:10px;align-content:start}
+.plan.pick{border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.plan h3{font-size:20px}
+.price{font-family:var(--display);font-size:36px;font-weight:800;font-variant-numeric:tabular-nums}
+.price span{font-family:var(--body);font-size:15px;font-weight:400;color:var(--muted)}
+.plan ul{margin:0;padding-left:18px;color:var(--muted)}
+.plan .btn{justify-content:center;margin-top:6px}
+.chip{justify-self:start;font-family:var(--mono);font-size:12px;background:var(--red);color:var(--paper);padding:3px 8px;border-radius:6px}
+@media (max-width:820px){.plans{grid-template-columns:1fr}}
+
+/* proof */
+.creds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.creds div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.creds b{display:block;font-family:var(--display);font-size:26px;font-variant-numeric:tabular-nums}
+.creds small{color:var(--muted);font-size:14px}
+@media (max-width:760px){.creds{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:s}
+.how div{border-left:3px solid var(--blue);padding:4px 0 4px 14px}
+.how div::before{counter-increment:s;content:"Step " counter(s);font-family:var(--mono);font-size:12px;color:var(--blue);display:block}
+.how b{display:block;font-size:17px}
+.how p{margin:2px 0 0;color:var(--muted);font-size:15px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+footer{padding-block:46px 56px;color:var(--muted);font-size:14px}
+</style>
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap">
+    <div>
+      <span class="label">JaKing Math · tutoring</span>
+      <h1>From Algebra to a <u>5 on AP Calc BC</u>.</h1>
+      <p>One-on-one online tutoring with Jaineil Rana (JaKing). I've tutored hundreds of students through calculus and built a free AP Math review site. Sessions focus on understanding the method, then drilling real AP-style FRQs until it sticks.</p>
+      <div class="ctas">
+        <a class="btn primary" href="https://www.linkedin.com/in/jaineil-rana-89005736a/" target="_blank" rel="noopener">Book on LinkedIn</a>
+        <span class="btn outline" aria-disabled="true">Patreon · launching soon</span>
+      </div>
+    </div>
+    <div class="board" aria-label="Example problem">
+      <span class="q">BC FRQ warm-up · series</span>
+      <span class="eq">Σ (n=1→∞) xⁿ / (n · 3ⁿ)</span>
+      <span class="step">Ratio test → |x| / 3 &lt; 1</span>
+      <span class="step">Check endpoints: x = −3 converges, x = 3 diverges</span>
+      <span class="ans">Interval of convergence: [−3, 3)</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section aria-labelledby="lad-h">
+    <div class="head"><span class="label">What I teach</span><h2 id="lad-h">Every course up to Calc BC</h2><p>Jump in at any rung. Most students come for one class and stay through the next.</p></div>
+    <div class="ladder">
+      <div class="rung"><span class="lvl">Rung 1</span><b>Algebra I &amp; II</b><small>Equations, functions, exponents, quadratics, systems</small></div>
+      <div class="rung"><span class="lvl">Rung 2</span><b>Geometry</b><small>Proofs, triangles, circles, coordinate geometry</small></div>
+      <div class="rung"><span class="lvl">Rung 3</span><b>Precalculus</b><small>Trig, logs, polynomials and rational functions, AP Precalc</small></div>
+      <div class="rung"><span class="lvl">Rung 4</span><b>AP Calc AB</b><small>Limits, derivatives, integrals, related rates, differential equations</small></div>
+      <div class="rung top"><span class="lvl">Rung 5</span><b>AP Calc BC</b><small>Everything in AB plus the BC-only units below</small></div>
+    </div>
+    <div class="bc" aria-label="BC-only topics"><span>Integration by parts</span><span>Partial fractions</span><span>Improper integrals</span><span>Euler's method</span><span>Logistic growth</span><span>Parametric &amp; vector motion</span><span>Polar area</span><span>Series &amp; convergence tests</span><span>Taylor &amp; Maclaurin</span><span>Lagrange error bound</span></div>
+  </section>
+
+  <section aria-labelledby="plans-h">
+    <div class="head"><span class="label">Plans</span><h2 id="plans-h">Choose a monthly plan</h2><p>Sessions are online and 50 minutes long. Cancel anytime. Message me on LinkedIn to pick a plan; Patreon checkout is coming soon.</p></div>
+    <div class="plans">
+      <article class="plan">
+        <h3>Study Pass</h3><div class="price">$10<span>/mo</span></div>
+        <ul><li>Monthly AP-style problem set with full solutions</li><li>Ask questions by message, answered within 48 hours</li></ul>
+        <a class="btn outline" href="https://www.linkedin.com/in/jaineil-rana-89005736a/" target="_blank" rel="noopener">Choose Study Pass</a>
+      </article>
+      <article class="plan pick">
+        <span class="chip">Most popular</span>
+        <h3>Weekly Tutoring</h3><div class="price">$120<span>/mo</span></div>
+        <ul><li>4 one-on-one sessions a month</li><li>Homework and test review on your class's schedule</li><li>Everything in Study Pass</li></ul>
+        <a class="btn primary" href="https://www.linkedin.com/in/jaineil-rana-89005736a/" target="_blank" rel="noopener">Choose Weekly</a>
+      </article>
+      <article class="plan">
+        <h3>AP Exam Sprint</h3><div class="price">$200<span>/mo</span></div>
+        <ul><li>8 sessions a month in the run-up to the AP exam</li><li>Timed practice exams scored on the 1–5 scale</li><li>FRQ write-up feedback</li></ul>
+        <a class="btn outline" href="https://www.linkedin.com/in/jaineil-rana-89005736a/" target="_blank" rel="noopener">Choose Sprint</a>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="cred-h">
+    <div class="head"><span class="label">Why me</span><h2 id="cred-h">Track record</h2></div>
+    <div class="creds">
+      <div><b>100s</b><small>of students tutored in Calc I, II and III</small></div>
+      <div><b>13</b><small>AP courses taken</small></div>
+      <div><b>Finalist</b><small>SkillsUSA Math team</small></div>
+      <div><b>Free</b><small><a href="https://jaineil32624.github.io/ap-math-mastery/" target="_blank" rel="noopener">AP Math Mastery</a> review site I built</small></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <div class="head"><span class="label">Getting started</span><h2 id="how-h">How it works</h2></div>
+    <div class="how">
+      <div><b>Pick a plan</b><p>Choose Study Pass, Weekly or Sprint above.</p></div>
+      <div><b>Send your schedule</b><p>Message me on <a href="https://www.linkedin.com/in/jaineil-rana-89005736a/" target="_blank" rel="noopener">LinkedIn</a> with your course, unit and free times.</p></div>
+      <div><b>First session</b><p>We start with what's due this week, then build a plan to the test.</p></div>
+    </div>
+  </section>
+</main>
+<footer class="wrap">JaKing Math · tutoring by Jaineil Rana (JaKing) · part of <a href="https://github.com/jaking-studios" target="_blank" rel="noopener">JaKing Studios</a></footer>
+
+</body>
+</html>

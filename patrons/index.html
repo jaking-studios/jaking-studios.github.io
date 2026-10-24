@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="https://raw.githubusercontent.com/jaking-studios/EpicWorlds50/main/Assets/branding/jaking_company_logo.svg">
+<title>JaKing Studios Patrons</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a "studio slate" hero, then a single column of tiers that read like a game's unlock track, then the work itself. */
+:root{
+  --bg:#f5f2ea; --surface:#ffffff; --ink:#151821; --muted:#5b6172; --line:#e2ddcf;
+  --gold:#d99a1e; --gold-ink:#7a5208; --ember:#d0581f; --night:#11141d; --on-night:#f4f1ea;
+  --display:"Unbounded", "Arial Black", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1219; --surface:#171b26; --ink:#f1eee6; --muted:#a3aabb; --line:#2a3040;
+  --gold:#f2bd4b; --gold-ink:#f6cf74; --ember:#ff8a4c; --night:#0a0c12; --on-night:#f4f1ea; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1219; --surface:#171b26; --ink:#f1eee6; --muted:#a3aabb; --line:#2a3040;
+  --gold:#f2bd4b; --gold-ink:#f6cf74; --ember:#ff8a4c; --night:#0a0c12; --on-night:#f4f1ea; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.08}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold-ink)}
+
+/* hero slate */
+.slate{background:var(--night);color:var(--on-night);position:relative;overflow:hidden}
+.slate::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(115deg,transparent 0 46px,rgba(242,189,75,.07) 46px 92px);pointer-events:none}
+.slate .wrap{position:relative;padding-block:56px 48px;display:grid;gap:28px}
+.crown{display:flex;align-items:center;gap:14px}
+.crown svg{width:54px;height:auto;flex:none}
+.crown span{font-family:var(--display);font-weight:700;letter-spacing:.14em;font-size:14px;color:#f2bd4b}
+.slate h1{font-size:clamp(34px,6.2vw,66px);font-weight:800;max-width:15ch}
+.slate h1 em{font-style:normal;color:#f2bd4b}
+.slate p.lede{max-width:58ch;color:#cfd3dd;font-size:18px;margin:0}
+.made{display:flex;flex-wrap:wrap;gap:8px}
+.made span{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;font-size:14px;color:#e6e8ee}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 18px;font-weight:700;text-decoration:none;font-size:16px;border:1px solid transparent;cursor:pointer;font-family:var(--body)}
+.btn.gold{background:#f2bd4b;color:#1b1406}
+.btn.ghost{border-color:rgba(255,255,255,.28);color:var(--on-night)}
+.btn:focus-visible{outline:3px solid var(--ember);outline-offset:2px}
+.btn[aria-disabled="true"]{opacity:.72;cursor:default}
+
+/* proof strip */
+.proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:-26px;position:relative}
+.proof div{background:var(--surface);padding:18px 18px 16px}
+.proof b{display:block;font-family:var(--display);font-size:28px;font-variant-numeric:tabular-nums}
+.proof small{color:var(--muted);font-size:14px}
+@media (max-width:720px){.proof{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+section{padding-block:56px 8px}
+.head{display:grid;gap:8px;margin-bottom:22px}
+.head h2{font-size:clamp(24px,3.4vw,34px)}
+.head p{margin:0;color:var(--muted);max-width:62ch}
+
+/* tier track */
+.track{display:grid;gap:14px}
+.tier{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:22px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px}
+.tier .lvl{display:grid;gap:2px}
+.tier .lvl small{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.tier .lvl strong{font-family:var(--display);font-size:30px;font-variant-numeric:tabular-nums}
+.tier .lvl strong span{font-size:14px;font-family:var(--body);color:var(--muted);font-weight:500}
+.tier h3{font-size:19px;margin-bottom:6px}
+.tier ul{margin:0;padding-left:18px;color:var(--muted)}
+.tier ul li{margin:2px 0}
+.tier.star{border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 22%,transparent)}
+.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:color-mix(in srgb,var(--gold) 20%,transparent);color:var(--gold-ink);padding:3px 8px;border-radius:6px;margin-left:8px;vertical-align:middle}
+.tier .go{display:flex;flex-direction:column;gap:8px;min-width:170px}
+.tier .go .btn{justify-content:center;padding:10px 14px;font-size:15px}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn.line{border-color:var(--line);color:var(--ink)}
+@media (max-width:760px){.tier{grid-template-columns:1fr;gap:12px}.tier .go{flex-direction:row;flex-wrap:wrap;min-width:0}}
+
+/* where the money goes */
+.split{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.split div{border-top:3px solid var(--gold);padding-top:12px}
+.split b{font-family:var(--display);font-size:18px;display:block;margin-bottom:4px}
+.split p{margin:0;color:var(--muted);font-size:15px}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+
+/* work */
+.work{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.work a{display:grid;gap:4px;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;transition:border-color .15s,transform .15s}
+.work a:hover{border-color:var(--gold);transform:translateY(-2px)}
+.work a:focus-visible{outline:3px solid var(--ember);outline-offset:2px}
+.work b{font-size:16px}
+.work small{color:var(--muted);font-size:14px}
+.work i{font-style:normal;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ember)}
+
+.commission{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:var(--night);color:var(--on-night);border-radius:var(--r);padding:26px}
+.commission h3{font-size:22px;margin-bottom:6px}
+.commission p{margin:0;color:#cfd3dd}
+@media (max-width:700px){.commission{grid-template-columns:1fr}}
+.coffee{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px;align-items:center;background:var(--surface);border:1px dashed var(--gold);border-radius:var(--r);padding:18px 22px}
+.coffee .cup{font-size:34px;line-height:1}
+.coffee h2{font-size:22px;margin-bottom:2px}
+.coffee p{margin:0;color:var(--muted)}
+.give{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:var(--r);padding:24px}
+.give h2{font-size:clamp(22px,3vw,28px);margin:6px 0 8px}
+.give p{margin:0;color:var(--muted);max-width:64ch}
+.give-btn{background:var(--ember);color:#fff}
+@media (max-width:700px){.coffee,.give{grid-template-columns:1fr}}
+footer{padding-block:48px 56px;color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<header class="slate">
+  <div class="wrap">
+    <div class="crown">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M8 40 L28 8 L44 30 L60 2 L76 30 L92 8 L112 40 Z" fill="#f2bd4b"/><path d="M72 48 L72 92 Q72 112 52 112 Q32 112 28 96" fill="none" stroke="#e07a2e" stroke-width="14" stroke-linecap="round"/></svg>
+      <span>JAKING STUDIOS</span>
+    </div>
+    <h1>Back the games, worlds and websites <em>JaKing</em> builds next.</h1>
+    <p class="lede">I'm Jaineil Rana. I make free browser games, VR experiences, Blender worlds, 3D models and web apps, and I put almost all of it online for anyone to play. Patrons keep the lights on and decide what gets built next.</p>
+    <div class="made"><span>Godot</span><span>Unity</span><span>Unreal</span><span>Blender</span><span>three.js / WebXR</span><span>Roblox</span><span>Android</span></div>
+    <div class="ctas">
+      <a class="btn gold" href="https://github.com/sponsors/jaineil32624" target="_blank" rel="noopener">♥ Become a patron on GitHub Sponsors</a>
+      <a class="btn ghost" href="https://github.com/sponsors/jaineil32624?frequency=one-time" target="_blank" rel="noopener">☕ Buy me a coffee · $5</a>
+      <span class="btn ghost" aria-disabled="true" title="Patreon page launching soon">Patreon · launching soon</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="proof" aria-label="Track record">
+    <div><b>17</b><small>games on JaKing Studios</small></div>
+    <div><b>5 / 50</b><small>EpicWorlds50 worlds released</small></div>
+    <div><b>400+</b><small>NASA models presented</small></div>
+    <div><b>10+</b><small>programming languages</small></div>
+  </div>
+
+  <section aria-labelledby="coffee-h">
+    <div class="coffee">
+      <div class="cup" aria-hidden="true">☕</div>
+      <div><h2 id="coffee-h">Buy me a coffee</h2><p>No subscription. A one-time $5 tip goes straight into the next build.</p></div>
+      <a class="btn solid" href="https://github.com/sponsors/jaineil32624?frequency=one-time" target="_blank" rel="noopener">Send $5</a>
+    </div>
+  </section>
+
+  <section aria-labelledby="tiers-h">
+    <div class="head">
+      <span class="eyebrow">Patron tiers</span>
+      <h2 id="tiers-h">Pick your level</h2>
+      <p>Monthly support, cancel anytime. Join through GitHub Sponsors today; the same tiers are coming to Patreon.</p>
+    </div>
+    <div class="track">
+      <article class="tier">
+        <div class="lvl"><small>Level 1</small><strong>$3<span>/mo</span></strong></div>
+        <div><h3>🍩 Donut Fan</h3><ul><li>Your name in the Supporters list on my GitHub profile</li></ul></div>
+        <div class="go"><a class="btn solid" href="https://github.com/sponsors/jaineil32624" target="_blank" rel="noopener">Join on GitHub</a></div>
+      </article>
+      <article class="tier">
+        <div class="lvl"><small>Level 2</small><strong>$10<span>/mo</span></strong></div>
+        <div><h3>🎮 Player One</h3><ul><li>Early access to new game builds</li><li>Vote on what I build next, including the next EpicWorlds50 world</li></ul></div>
+        <div class="go"><a class="btn solid" href="https://github.com/sponsors/jaineil32624" target="_blank" rel="noopener">Join on GitHub</a></div>
+      </article>
+      <article class="tier star">
+        <div class="lvl"><small>Level 3</small><strong>$25<span>/mo</span></strong></div>
+        <div><h3>🥽 VR Pioneer <span class="tag">Most picked</span></h3><ul><li>Monthly devlog with behind-the-scenes builds</li><li>Your name in my games' credits</li></ul></div>
+        <div class="go"><a class="btn solid" href="https://github.com/sponsors/jaineil32624" target="_blank" rel="noopener">Join on GitHub</a></div>
+      </article>
+      <article class="tier">
+        <div class="lvl"><small>Level 4</small><strong>$100<span>/mo</span></strong></div>
+        <div><h3>👑 Royal Patron</h3><ul><li>Request a feature in one of my games</li><li>A special thanks on my GitHub profile</li></ul></div>
+        <div class="go"><a class="btn solid" href="https://github.com/sponsors/jaineil32624" target="_blank" rel="noopener">Join on GitHub</a></div>
+      </article>
+      <p style="margin:4px 0 0;color:var(--muted)">Prefer a one-time tip? $5 and $30 one-time options are on <a href="https://github.com/sponsors/jaineil32624" target="_blank" rel="noopener">GitHub Sponsors</a>.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="money-h">
+    <div class="head"><span class="eyebrow">Where it goes</span><h2 id="money-h">What your support pays for</h2></div>
+    <div class="split">
+      <div><b>Render time</b><p>GPU hours for cinematic trailers and the 45 EpicWorlds50 worlds still to come.</p></div>
+      <div><b>Publishing</b><p>Store fees, Android builds, and hosting so games stay free to play in the browser.</p></div>
+      <div><b>Tools and assets</b><p>Software, plugins, VR hardware testing and sound for better, bigger projects.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="work-h">
+    <div class="head"><span class="eyebrow">What you're backing</span><h2 id="work-h">Play the work</h2><p>All free in the browser. Patrons get the next ones first.</p></div>
+    <div class="work">
+      <a href="https://jaking-studios.github.io/glaze-and-grind/play/" target="_blank" rel="noopener"><i>Godot 4</i><b>Glaze &amp; Grind</b><small>Donut and coffee shop tycoon</small></a>
+      <a href="https://github.com/jaking-studios/EpicWorlds50" target="_blank" rel="noopener"><i>Blender + three.js</i><b>EpicWorlds50</b><small>Explorable 3D worlds with 100 m+ landmarks</small></a>
+      <a href="https://jaking-studios.github.io/slimefall-td/" target="_blank" rel="noopener"><i>Browser</i><b>Slimefall TD</b><small>Tower defense with 28 towers</small></a>
+      <a href="https://jaking-studios.github.io/living-room-vr/" target="_blank" rel="noopener"><i>WebXR</i><b>Living Room VR</b><small>VR chores game in 120 baked rooms</small></a>
+      <a href="https://jaking-studios.github.io/hypercar-x-drive-unity/" target="_blank" rel="noopener"><i>Unity 6</i><b>HYPERCAR-X Drive</b><small>3D hypercar driving sim</small></a>
+      <a href="https://jaking-studios.github.io/infinite-school/" target="_blank" rel="noopener"><i>Pixel RPG</i><b>Infinite School</b><small>Time-loop mystery</small></a>
+      <a href="https://jaineil32624.github.io/anatomy-atlas/" target="_blank" rel="noopener"><i>Web app</i><b>Anatomy Atlas</b><small>Interactive 3D human anatomy</small></a>
+      <a href="https://github.com/jaking-studios" target="_blank" rel="noopener"><i>All projects</i><b>JaKing Studios</b><small>Every game in one place</small></a>
+    </div>
+  </section>
+
+  <section aria-labelledby="give-h">
+    <div class="give">
+      <div>
+        <span class="eyebrow">Give back</span>
+        <h2 id="give-h">Support cancer research</h2>
+        <p>If you'd rather give to a bigger cause, donate to St. Jude Children's Research Hospital. St. Jude researches and treats childhood cancer, and families never receive a bill for treatment, travel, housing or food. Your donation goes directly to St. Jude, not through me.</p>
+      </div>
+      <a class="btn give-btn" href="https://www.stjude.org/donate/donate-to-st-jude.html" target="_blank" rel="noopener">Donate to St. Jude</a>
+    </div>
+  </section>
+
+  <section aria-labelledby="com-h">
+    <div class="commission">
+      <div><h3 id="com-h">Want something built for you?</h3><p>Custom games run $70–100, and you get the playable game and all the files. Ask about 3D models and websites too.</p></div>
+      <a class="btn gold" href="https://github.com/jaineil32624/jaineil32624/issues/new?template=game-request.yml" target="_blank" rel="noopener">Request a commission</a>
+    </div>
+  </section>
+</main>
+<footer class="wrap">JaKing Studios · made by Jaineil Rana (JaKing) · <a href="https://github.com/jaineil32624" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/jaineil-rana-89005736a/" target="_blank" rel="noopener">LinkedIn</a></footer>
+
+</body>
+</html>
